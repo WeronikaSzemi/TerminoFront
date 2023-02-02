@@ -1,0 +1,139 @@
+.theme-text-light {
+    color: #F6F6F2;
+}
+
+.theme-text-dark {
+    color: #1C131E;
+}
+
+.theme-text-darkaccent {
+    color: #AC415C;
+}
+
+.theme-text-lightaccent {
+    color: #6798BF;
+}
+
+.theme-text-mainbrand {
+    color: #004AAD;
+}
+
+.theme-bg-light {
+    background-color: #F6F6F2;
+}
+
+.theme-bg-dark {
+    background-color: #1C131E;
+}
+
+.theme-bg-darkaccent {
+    background-color: #AC415C;
+}
+
+.theme-bg-lightaccent {
+    background-color: #6798BF;
+}
+
+.theme-bg-mainbrand {
+    background-color: #004AAD;
+}
+
+.theme-border-light {
+    border-color: #F6F6F2 !important;
+}
+
+.theme-border-dark {
+    border-color: #1C131E !important;
+}
+
+.theme-border-darkaccent {
+    border-color: #AC415C !important;
+}
+
+.theme-border-lightaccent {
+    border-color: #6798BF !important;
+}
+
+.theme-border-mainbrand {
+    border-color: #004AAD !important;
+}
+
+.theme-btn-darkaccent {
+    border-color: #AC415C;
+    background-color: #AC415C;
+    color: #F6F6F2;
+}
+
+.theme-btn-darkaccent:hover {
+    border-color: #AC415C;
+    background-color: #F6F6F2;
+    color: #AC415C;
+}
+
+.theme-btn-mainbrand {
+    border-color: #004AAD;
+    background-color: #004AAD;
+    color: #F6F6F2;
+}
+
+.theme-btn-mainbrand:hover {
+    border-color: #004AAD;
+    background-color: #F6F6F2;
+    color: #004AAD;
+}
+
+.theme-btn-lightaccent {
+    border-color: #6798BF;
+    background-color: #6798BF;
+    color: #F6F6F2;
+}
+
+.theme-btn-lightaccent:hover {
+    border-color: #6798BF;
+    background-color: #F6F6F2;
+    color: #6798BF;
+}
+
+.theme-btn-darkaccent {
+    border-color: #AC415C;
+    background-color: #AC415C;
+    color: #F6F6F2;
+}
+
+.theme-btn-darkaccent:hover {
+    border-color: #AC415C;
+    background-color: #F6F6F2;
+    color: #AC415C;
+}
+
+.theme-btn-light-main {
+    border-color: #F6F6F2;
+    background-color: #F6F6F2;
+    color: #004AAD;
+}
+
+.theme-btn-light-main:hover {
+    border-color: #F6F6F2;
+    background-color: #004AAD;
+    color: #F6F6F2;
+}
+
+.theme-btn-light-darkaccent {
+    border-color: #AC415C;
+    background-color: #F6F6F2;
+    color: #AC415C;
+}
+
+.theme-btn-light-darkaccent:hover {
+    border-color: #AC415C;
+    background-color: #AC415C;
+    color: #F6F6F2;
+}
+
+.nav-link {
+    color: #F6F6F2;
+}
+
+.nav-link:hover {
+    color: #004AAD;
+}

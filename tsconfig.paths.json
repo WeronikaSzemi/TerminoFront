@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "types": [
+        "E:\\OneDrive\\Praca\\IT\\Codes\\Własne projekty\\Termino\\backend\\types"
+      ]
+    }
+  }
+}
