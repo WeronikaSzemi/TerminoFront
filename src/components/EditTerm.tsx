@@ -1,136 +1,267 @@
-import React, {FormEvent, useState} from "react";
+import React, {ComponentState, FormEvent, useEffect, useState} from "react";
 import './AddTerm.css';
+import './style.css';
+import {Link, useParams} from "react-router-dom";
+import {Spinner} from "./Spinner";
+import {TermEntity} from "types";
+import {Simulate} from "react-dom/test-utils";
+import {Menu} from "./Menu";
+import input = Simulate.input;
 
 export const EditTerm = () => {
-    // const getTerms = async () => {
-    //     const res = await fetch('http://localhost:3001/terms/edit/')
-    // }
+    const [entry, setEntry] = useState<TermEntity | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [resultInfo, setResultInfo] = useState<string | null>(null);
+    const [error, setError] = useState<Error | null>(null);
 
-    const [entry, setEntry] = useState({
-        term: '',
-        termSource: '',
-        termDefinition: '',
-        termDefinitionSource: '',
-        termCollocations: '',
-        equivalent: '',
-        equivalentSource: '',
-        equivalentDefinition: '',
-        equivalentDefinitionSource: '',
-        equivalentCollocations: '',
-    });
+    const {termId} = useParams();
+
+    useEffect(() => {
+
+        (async () => {
+            const res = await fetch(`http://localhost:3001/terms/${termId}`);
+            const data = await res.json();
+            setEntry(data.entry);
+        })();
+    }, []);
+
+    if (entry === null) {
+        return null;
+    }
+
+    const updateEntry = (e: any) => {
+        setEntry(entry => ({
+            ...entry,
+            [e.target.id]: e.target.value,
+        } as ComponentState));
+    };
 
     const sendForm = async (e: FormEvent) => {
         e.preventDefault();
 
-        await fetch('http://localhost:3001/terms', {
-            method: 'POST',
+        setLoading(true);
+
+        const res = await fetch(`http://localhost:3001/terms/${termId}`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(entry),
         });
-        console.log(entry);
+
+        setLoading(false);
+        setResultInfo(`Hasło „${entry.term}” zostało zmodyfikowane.`);
     };
 
-    const updateForm = (key: string, value: any) => {
-        setEntry(entry => ({
-            ...entry,
-            [key]: value,
-        }));
-    };
+    if (resultInfo !== null) {
+        return <>
+            <Menu/>
+            <div className="container text-center theme-bg-light theme-border-mainbrand border-4 p-3 mt-5">
+                <p className="fs-5">{resultInfo}</p>
+                <Link to={`/termbases/sampletermbase`}
+                      className="btn btn-sm theme-btn-mainbrand mx-1 my-1 my-md-0"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16"
+                         height="16"
+                         fill="currentColor"
+                         className="bi bi-arrow-left-circle-fill"
+                         viewBox="0 0 16 16">
+                        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                    </svg>
+                    Wróć do listy
+                </Link>
+            </div>
+        </>
 
-    return <>
-        <h2>Edycja hasła</h2>
+        {/*// return <SampleTermbaseView/>*/
+        }
+    }
+
+    if (loading) {
+        return <Spinner/>
+    }
+
+    return <div className="container p-3">
+        <h2 className="mb-4">Edycja hasła</h2>
         <form onSubmit={sendForm}>
-            <label>
-                <p>Termin:</p>
+            <div className="mb-3">
+                <label htmlFor="term"
+                       className="form-label">Wyraz hasłowy</label>
                 <input
                     type="text"
                     value={entry.term}
-                    onChange={e => updateForm('term', e.target.value)}
+                    onChange={e => updateEntry(e)}
                     maxLength={50}
+                    className="form-control"
+                    id="term"
+                    aria-describedby="termHelp"
                     required
-                />*
-            </label><br/>
-            <label>
-                <p>Źródło:</p>
+                />
+                <div id="termHelp"
+                     className="form-text">Pole obowiązkowe. Wyraz hasłowy może mieć od 3 do 50 znaków. Może składać się
+                    z kilku wyrazów.
+                </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="termSource"
+                       className="form-label">Źródło</label>
                 <input
                     type="text"
                     value={entry.termSource}
-                    onChange={e => updateForm('termSource', e.target.value)}
+                    onChange={e => updateEntry(e)}
                     maxLength={100}
+                    className="form-control"
+                    id="termSource"
+                    aria-describedby="termSourceHelp"
                 />
-            </label><br/>
-            <label>
-                <p>Definicja:</p>
+                <div id="termSourceHelp"
+                     className="form-text">Np. link lub tytuł tekstu.
+                </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="termDefinition"
+                       className="form-label">Definicja</label>
                 <textarea
                     value={entry.termDefinition}
-                    onChange={e => updateForm('termDefinition', e.target.value)}
+                    onChange={e => updateEntry(e)}
                     maxLength={300}
+                    className="form-control"
+                    id="termDefinition"
+                    aria-describedby="termDefinitionHelp"
                 />
-            </label><br/>
-            <label>
-                <p>Źródło definicji:</p>
+                <div id="termDefinitionHelp"
+                     className="form-text">Maksymalnie 300 znaków.
+                </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="termDefinitionSource"
+                       className="form-label">Źródło definicji</label>
                 <input
                     type="text"
                     value={entry.termDefinitionSource}
-                    onChange={e => updateForm('termDefinitionSource', e.target.value)}
+                    onChange={e => updateEntry(e)}
                     maxLength={100}
+                    className="form-control"
+                    id="termDefinitionSource"
+                    aria-describedby="termDefinitionSourceHelp"
                 />
-            </label><br/>
-            <label>
-                <p>Kolokacje:</p>
+                <div id="termDefinitionSourceHelp"
+                     className="form-text">Np. link lub tytuł tekstu.
+                </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="termCollocations"
+                       className="form-label">Kolokacje</label>
                 <textarea
                     value={entry.termCollocations}
-                    onChange={e => updateForm('termCollocations', e.target.value)}
+                    onChange={e => updateEntry(e)}
                     maxLength={300}
+                    className="form-control"
+                    id="termCollocations"
+                    aria-describedby="termCollocationsHelp"
                 />
-            </label><br/>
-            <label>
-                <p>Ekwiwalent:</p>
+                <div id="termCollocationsHelp"
+                     className="form-text">Możesz wypisać wyrażenia od nowego wiersza lub po przecinku.
+                </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="equivalent"
+                       className="form-label">Ekwiwalent</label>
                 <input
                     type="text"
                     value={entry.equivalent}
-                    onChange={e => updateForm('equivalent', e.target.value)}
+                    onChange={e => updateEntry(e)}
                     maxLength={50}
+                    className="form-control"
+                    id="equivalent"
+                    aria-describedby="equivalentHelp"
                     required
-                />*
-            </label><br/>
-            <label>
-                <p>Źródło:</p>
+                />
+                <div id="equivalentHelp"
+                     className="form-text">Pole obowiązkowe. Ekwiwalent może mieć od 3 do 50 znaków. Może składać się z
+                    kilku wyrazów.
+                </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="equivalentSource"
+                       className="form-label">Źródło</label>
                 <input
                     type="text"
                     value={entry.equivalentSource}
-                    onChange={e => updateForm('equivalentSource', e.target.value)}
+                    onChange={e => updateEntry(e)}
                     maxLength={100}
+                    className="form-control"
+                    id="equivalentSource"
+                    aria-describedby="equivalentSourceHelp"
                 />
-            </label><br/>
-            <label>
-                <p>Definicja:</p>
+                <div id="equivalentSourceHelp"
+                     className="form-text">Np. link lub tytuł tekstu.
+                </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="equivalentDefinition"
+                       className="form-label">Definicja</label>
                 <textarea
                     value={entry.equivalentDefinition}
-                    onChange={e => updateForm('equivalentDefinition', e.target.value)}
+                    onChange={e => updateEntry(e)}
                     maxLength={300}
+                    className="form-control"
+                    id="equivalentDefinition"
+                    aria-describedby="equivalentDefinitionHelp"
                 />
-            </label><br/>
-            <label>
-                <p>Źródło definicji:</p>
+                <div id="equivalentDefinitionHelp"
+                     className="form-text">Maksymalnie 300 znaków.
+                </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="equivalentDefinitionSource"
+                       className="form-label">Źródło definicji</label>
                 <input
                     type="text"
                     value={entry.equivalentDefinitionSource}
-                    onChange={e => updateForm('equivalentDefinitionSource', e.target.value)}
+                    onChange={e => updateEntry(e)}
                     maxLength={100}
+                    className="form-control"
+                    id="equivalentDefinitionSource"
+                    aria-describedby="equivalentDefinitionSourceHelp"
                 />
-            </label><br/>
-            <label>
-                <p>Kolokacje:</p>
+                <div id="equivalentDefinitionSourceHelp"
+                     className="form-text">Np. link lub tytuł tekstu.
+                </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="equivalentCollocations"
+                       className="form-label">Kolokacje</label>
                 <textarea
                     value={entry.equivalentCollocations}
-                    onChange={e => updateForm('equivalentCollocations', e.target.value)}
+                    onChange={e => updateEntry(e)}
                     maxLength={300}
+                    className="form-control"
+                    id="equivalentCollocations"
+                    aria-describedby="equivalentCollocationsHelp"
                 />
-            </label><br/>
-            <button type="submit">Zapisz</button>
+                <div id="equivalentCollocationsHelp"
+                     className="form-text">Możesz wypisać wyrażenia od nowego wiersza lub po przecinku.
+                </div>
+            </div>
+            <button type="submit"
+                    className="btn theme-btn-mainbrand border-2">Zapisz
+            </button>
+            <Link to={`/termbases/sampletermbase`}
+                  className="btn theme-btn-lightaccent mx-1 my-1 my-md-0"
+                // onClick={}
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     fill="currentColor"
+                     className="bi bi-arrow-left-circle-fill"
+                     viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+                Anuluj i wróć do listy
+            </Link>
         </form>
-    </>
+    </div>
 }

@@ -2,9 +2,10 @@ import React, {FormEvent, useState} from "react";
 import './AddTerm.css';
 import './style.css';
 import {Spinner} from "./Spinner";
+import {CreateEntryReq} from "types";
 
 export const AddTerm = () => {
-    const [entry, setEntry] = useState({
+    const [entry, setEntry] = useState<CreateEntryReq>({
         term: '',
         termSource: '',
         termDefinition: '',
