@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import "./style.css";
+import "../style.css";
 
 export const Menu = () => {
     return <>
@@ -30,19 +30,19 @@ export const Menu = () => {
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <a className="nav-link"
-                               href="#">O Termino</a>
+                               href="termino/src/components#">O Termino</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link"
-                               href="#">Zaloguj się</a>
+                               href="termino/src/components#">Zaloguj się</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link"
-                               href="#">Zarejestruj się</a>
+                               href="termino/src/components#">Zarejestruj się</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link"
-                               href="#">Kontakt</a>
+                               href="termino/src/components#">Kontakt</a>
                         </li>
                     </ul>
                     <Link to="/termbases/sampletermbase"

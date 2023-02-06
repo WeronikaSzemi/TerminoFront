@@ -16,7 +16,7 @@ export const Header = () => {
                             <h1 className="display-3">Termino</h1>
                             <p className="lead">Przestrzeń na Twoją terminologię</p>
                             <p><a className="btn btn-lg btn-outline-light rounded-3 border-2"
-                                  href="#">Wypróbuj</a></p>
+                                  href="termino/src/components#">Wypróbuj</a></p>
                         </div>
                     </div>
                 </div>

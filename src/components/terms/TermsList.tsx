@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {TermEntity} from 'types';
 import {TermsTable} from "./TermsTable";
-import {Spinner} from "./Spinner";
+import {Spinner} from "../Spinner/Spinner";
 
 export const TermsList = () => {
     const [termList, setTermList] = useState<TermEntity[] | null>(null);

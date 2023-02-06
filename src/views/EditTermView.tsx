@@ -1,5 +1,5 @@
 import React from "react";
-import {EditTerm} from "../components/EditTerm";
+import {EditTerm} from "../components/terms/EditTerm";
 
 export const EditTermView = () => {
     return <>

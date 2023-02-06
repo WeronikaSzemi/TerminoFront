@@ -1,6 +1,6 @@
 import React from "react";
-import {Menu} from "../components/Menu";
-import {TermsList} from "../components/TermsList";
+import {Menu} from "../components/homepage/Menu";
+import {TermsList} from "../components/terms/TermsList";
 
 export const SampleTermbaseView = () => {
     return <>

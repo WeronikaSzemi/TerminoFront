@@ -4,7 +4,7 @@ export const ContactForm = () => {
     return <div className="container">
         <div id="contact">
             <h2 className="display-6 theme-text-dark text-uppercase text-center mb-5">Kontakt</h2>
-            <form action="">
+            <form action="termino/src/components">
                 <div className="row align-items-center">
                     <div className="col-md-7 mb-3">
                         <label htmlFor="subject"

@@ -10,6 +10,7 @@ import {SampleTermbaseView} from "./views/SampleTermbaseView";
 import {EditTermView} from "./views/EditTermView";
 import {AddTermView} from "./views/AddTermView";
 import {NotFoundView} from "./views/NotFoundView";
+import {UserCockpitView} from "./views/UserCockpitView";
 
 export const App = () => {
     return <>
@@ -17,10 +18,12 @@ export const App = () => {
         <Routes>
             <Route path="/"
                    element={<HomeView/>}/>
-            <Route path="/login"
+            <Route path="/user/login"
                    element={<LoginView/>}/>
-            <Route path="/register"
+            <Route path="/user/register"
                    element={<RegisterView/>}/>
+            <Route path="/user/:userId"
+                   element={<UserCockpitView/>}/>
             <Route path="/terms"
                    element={<TermsView/>}/>
             <Route path="/terms/:termId"
