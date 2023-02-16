@@ -1,8 +1,9 @@
-import React, {FormEvent, useState} from "react";
+import React, {FormEvent, useEffect, useState} from "react";
 import './AddTerm.css';
 import '../style.css';
 import {Spinner} from "../Spinner/Spinner";
 import {CreateEntryReq} from "types";
+import {useNavigate} from "react-router-dom";
 
 export const AddTerm = () => {
     const [entry, setEntry] = useState<CreateEntryReq>({
@@ -18,21 +19,35 @@ export const AddTerm = () => {
         equivalentCollocations: '',
     });
 
+    const [savedEntry, setSavedEntry] = useState(false);
+
     const [loading, setLoading] = useState<boolean>(false);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (savedEntry) {
+            navigate('/');
+        }
+    }, [savedEntry]);
 
     const sendForm = async (e: FormEvent) => {
         e.preventDefault();
 
         setLoading(true);
 
-        await fetch('http://localhost:3001/terms', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(entry),
-        });
-        setLoading(false);
+        try {
+            await fetch('http://localhost:3001/terms', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(entry),
+            });
+            setSavedEntry(true);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const updateForm = (key: string, value: any) => {
@@ -48,7 +63,8 @@ export const AddTerm = () => {
 
     return <div className="container p-3">
         <h2 className="mb-4">Dodawanie hasła</h2>
-        <form onSubmit={sendForm}>
+        <form onSubmit={sendForm}
+              className="w-75">
             <div className="mb-3">
                 <label htmlFor="term"
                        className="form-label">Wyraz hasłowy</label>
