@@ -15,9 +15,10 @@ import {LoginContext} from "./contexts/login.context";
 
 export const App = () => {
     const [loggedIn, setLoggedIn] = useState(false);
+    const [userName, setUserName] = useState('');
 
     return <>
-        <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
+        <LoginContext.Provider value={{loggedIn, setLoggedIn, userName, setUserName}}>
             <Routes>
                 <Route path="/"
                        element={<HomeView/>}/>

@@ -12,7 +12,7 @@ export const Login = () => {
         style: '',
     });
 
-    const {loggedIn, setLoggedIn} = useContext(LoginContext);
+    const {loggedIn, setLoggedIn, setUserName} = useContext(LoginContext);
 
     const navigate = useNavigate();
 
@@ -53,6 +53,7 @@ export const Login = () => {
                 style: '',
             });
             setLoggedIn(true);
+            setUserName(user.userName);
         }
     };
 
