@@ -12,6 +12,8 @@ import {AddTermView} from "./views/AddTermView";
 import {NotFoundView} from "./views/NotFoundView";
 import {DashboardView} from "./views/DashboardView";
 import {LoginContext} from "./contexts/login.context";
+import {AccountView} from "./views/AccountView";
+import {UserTermbasesView} from "./views/UserTermbasesView";
 
 export const App = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -28,6 +30,10 @@ export const App = () => {
                        element={<RegisterView/>}/>
                 <Route path="/user/:userId"
                        element={<DashboardView/>}/>
+                <Route path="/user/:userId/account"
+                       element={<AccountView/>}/>
+                <Route path="/user/:userId/termbases"
+                       element={<UserTermbasesView/>}/>
                 <Route path="/user"
                        element={<LoginView/>}/>
                 <Route path="/terms"
