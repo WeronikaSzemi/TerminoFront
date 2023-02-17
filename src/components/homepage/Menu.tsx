@@ -1,8 +1,21 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {BaseSyntheticEvent, useContext} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import "../style.css";
+import {LoginContext} from "../../contexts/login.context";
 
 export const Menu = () => {
+    const {loggedIn, userName} = useContext(LoginContext);
+
+    const navigate = useNavigate();
+
+    const handleDashboardReq = (e: BaseSyntheticEvent) => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        } else {
+            navigate(`/user/${userName}`);
+        }
+    }
+
     return <>
         <div className="navbar navbar-expand-lg sticky-top theme-bg-lightaccent">
             <div className="container-fluid">
@@ -30,19 +43,15 @@ export const Menu = () => {
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <a className="nav-link"
-                               href="termino/src/components#">O Termino</a>
+                               href="/#about-termino">O Termino</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link"
-                               href="termino/src/components#">Zaloguj się</a>
+                               href="/#contact">Kontakt</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link"
-                               href="termino/src/components#">Zarejestruj się</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link"
-                               href="termino/src/components#">Kontakt</a>
+                               href={`/user/${userName}`}>Twoje konto</a>
                         </li>
                     </ul>
                     <Link to="/termbases/sampletermbase"

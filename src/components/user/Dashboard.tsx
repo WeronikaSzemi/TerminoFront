@@ -12,38 +12,37 @@ export const Dashboard = () => {
     }
 
     return <div className="container p-3">
-        <div className="row align-items-center">
+        <div className="row">
             <h2 className="my-5 theme-text-mainbrand">Witaj, {userName}!</h2>
 
-            <div className="card col-8 col-sm-6 col-md-3 d-flex text-center mb-4 mx-4 theme-border-mainbrand">
+            <div className="card col-10 col-lg-3 col-md-5 d-flex text-center mb-4 mx-4 theme-border-mainbrand shadow">
                 <div className="card-body">
                     <p className="text-center display-6 theme-text-mainbrand">
                         <i className="bi bi-book"></i>
                     </p>
-                    <h3 className="mb-4 fs-4 card-title theme-text-dark">Twoje słowniki</h3>
+                    <h3 className="card-title mb-4 fs-4 theme-text-dark">Twoje słowniki</h3>
                     <button className="btn theme-btn-mainbrand">Zobacz</button>
                 </div>
             </div>
-            <div className="card col-8 col-sm-6 col-md-3 d-flex text-center mb-4 mx-4 theme-border-lightaccent">
+            <div className="card col-10 col-lg-3 col-md-5 d-flex text-center mb-4 mx-4 theme-border-lightaccent shadow">
                 <div className="card-body">
                     <p className="text-center display-6 theme-text-lightaccent">
                         <i className="bi bi-person-circle"></i>
                     </p>
-                    <h3 className="mb-4 fs-4 card-title theme-text-dark">Twoje dane</h3>
+                    <h3 className="card-title mb-4 fs-4 theme-text-dark">Twoje dane</h3>
                     <button className="btn theme-btn-lightaccent">Edytuj</button>
                 </div>
             </div>
-            <div className="card col-8 col-sm-6 col-md-3 d-flex text-center mb-4 mx-4 theme-border-darkaccent">
+            <div className="card col-10 col-lg-3 col-md-5 d-flex text-center mb-4 mx-4 theme-border-darkaccent shadow">
                 <div className="card-body">
                     <p className="text-center display-6 theme-text-darkaccent">
                         <i className="bi bi-toggle-off"></i>
                     </p>
-                    <h3 className="mb-4 fs-4 card-title theme-text-dark">Zakończ pracę</h3>
+                    <h3 className="card-title mb-4 fs-4 theme-text-dark">Zakończ pracę</h3>
                     <button className="btn theme-btn-darkaccent">Wyloguj</button>
                 </div>
             </div>
 
         </div>
     </div>
-
 }

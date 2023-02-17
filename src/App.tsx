@@ -28,10 +28,12 @@ export const App = () => {
                        element={<RegisterView/>}/>
                 <Route path="/user/:userId"
                        element={<DashboardView/>}/>
+                <Route path="/user"
+                       element={<LoginView/>}/>
                 <Route path="/terms"
                        element={<TermsView/>}/>
-            <Route path="/terms/:termId"
-                   element={<SingleTermView/>}/>
+                <Route path="/terms/:termId"
+                       element={<SingleTermView/>}/>
                 <Route path="/terms/add"
                        element={<AddTermView/>}/>
                 <Route path="/terms/:termId/edit"
