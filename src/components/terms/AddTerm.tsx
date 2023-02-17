@@ -62,12 +62,12 @@ export const AddTerm = () => {
     }
 
     return <div className="container p-3">
-        <h2 className="mb-4">Dodawanie hasła</h2>
+        <h2 className="my-5 theme-text-mainbrand">Dodawanie hasła</h2>
         <form onSubmit={sendForm}
-              className="w-75">
+              className="col-12 col-md-10 col-lg-8">
             <div className="mb-3">
                 <label htmlFor="term"
-                       className="form-label">Wyraz hasłowy</label>
+                       className="form-label fw-bold">Wyraz hasłowy</label>
                 <input
                     type="text"
                     value={entry.term}
@@ -85,7 +85,7 @@ export const AddTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="termSource"
-                       className="form-label">Źródło</label>
+                       className="form-label fw-bold">Źródło</label>
                 <input
                     type="text"
                     value={entry.termSource}
@@ -101,7 +101,7 @@ export const AddTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="termDefinition"
-                       className="form-label">Definicja</label>
+                       className="form-label fw-bold">Definicja</label>
                 <textarea
                     value={entry.termDefinition}
                     onChange={e => updateForm('termDefinition', e.target.value)}
@@ -116,7 +116,7 @@ export const AddTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="termDefinitionSource"
-                       className="form-label">Źródło definicji</label>
+                       className="form-label fw-bold">Źródło definicji</label>
                 <input
                     type="text"
                     value={entry.termDefinitionSource}
@@ -132,7 +132,7 @@ export const AddTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="termCollocations"
-                       className="form-label">Kolokacje</label>
+                       className="form-label fw-bold">Kolokacje</label>
                 <textarea
                     value={entry.termCollocations}
                     onChange={e => updateForm('termCollocations', e.target.value)}
@@ -147,7 +147,7 @@ export const AddTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalent"
-                       className="form-label">Ekwiwalent</label>
+                       className="form-label fw-bold">Ekwiwalent</label>
                 <input
                     type="text"
                     value={entry.equivalent}
@@ -165,7 +165,7 @@ export const AddTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalentSource"
-                       className="form-label">Źródło</label>
+                       className="form-label fw-bold">Źródło</label>
                 <input
                     type="text"
                     value={entry.equivalentSource}
@@ -181,7 +181,7 @@ export const AddTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalentDefinition"
-                       className="form-label">Definicja</label>
+                       className="form-label fw-bold">Definicja</label>
                 <textarea
                     value={entry.equivalentDefinition}
                     onChange={e => updateForm('equivalentDefinition', e.target.value)}
@@ -196,7 +196,7 @@ export const AddTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalentDefinitionSource"
-                       className="form-label">Źródło definicji</label>
+                       className="form-label fw-bold">Źródło definicji</label>
                 <input
                     type="text"
                     value={entry.equivalentDefinitionSource}
@@ -212,7 +212,7 @@ export const AddTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalentCollocations"
-                       className="form-label">Kolokacje</label>
+                       className="form-label fw-bold">Kolokacje</label>
                 <textarea
                     value={entry.equivalentCollocations}
                     onChange={e => updateForm('equivalentCollocations', e.target.value)}
@@ -226,7 +226,7 @@ export const AddTerm = () => {
                 </div>
             </div>
             <button type="submit"
-                    className="btn theme-btn-mainbrand border-2">Zapisz
+                    className="btn theme-btn-mainbrand border-2 w-100">Zapisz
             </button>
         </form>
     </div>

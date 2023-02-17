@@ -12,7 +12,6 @@ export const EditTerm = () => {
     const [entry, setEntry] = useState<TermEntity | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [resultInfo, setResultInfo] = useState<string | null>(null);
-    const [error, setError] = useState<Error | null>(null);
 
     const {termId} = useParams();
 
@@ -74,8 +73,6 @@ export const EditTerm = () => {
             </div>
         </>
 
-        {/*// return <SampleTermbaseView/>*/
-        }
     }
 
     if (loading) {
@@ -83,45 +80,48 @@ export const EditTerm = () => {
     }
 
     return <div className="container p-3">
-        <h2 className="mb-4">Edycja hasła</h2>
-        <form onSubmit={sendForm}>
-            <div className="mb-3">
-                <label htmlFor="term"
-                       className="form-label">Wyraz hasłowy</label>
-                <input
-                    type="text"
-                    value={entry.term}
-                    onChange={e => updateEntry(e)}
-                    maxLength={50}
-                    className="form-control"
-                    id="term"
-                    aria-describedby="termHelp"
-                    required
-                />
-                <div id="termHelp"
-                     className="form-text">Pole obowiązkowe. Wyraz hasłowy może mieć od 3 do 50 znaków. Może składać się
-                    z kilku wyrazów.
+        <h2 className="my-5 theme-text-mainbrand">Edycja hasła</h2>
+        <div className="row">
+            <form onSubmit={sendForm}
+                  className="col-12 col-md-10 col-lg-8">
+                <div className="mb-3">
+                    <label htmlFor="term"
+                           className="form-label fw-bold">Wyraz hasłowy</label>
+                    <input
+                        type="text"
+                        value={entry.term}
+                        onChange={e => updateEntry(e)}
+                        maxLength={50}
+                        className="form-control"
+                        id="term"
+                        aria-describedby="termHelp"
+                        required
+                    />
+                    <div id="termHelp"
+                         className="form-text">Pole obowiązkowe. Wyraz hasłowy może mieć od 3 do 50 znaków. Może składać
+                        się
+                        z kilku wyrazów.
+                    </div>
                 </div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="termSource"
-                       className="form-label">Źródło</label>
-                <input
-                    type="text"
-                    value={entry.termSource}
-                    onChange={e => updateEntry(e)}
-                    maxLength={100}
-                    className="form-control"
-                    id="termSource"
-                    aria-describedby="termSourceHelp"
-                />
+                <div className="mb-3">
+                    <label htmlFor="termSource"
+                           className="form-label fw-bold">Źródło</label>
+                    <input
+                        type="text"
+                        value={entry.termSource}
+                        onChange={e => updateEntry(e)}
+                        maxLength={100}
+                        className="form-control"
+                        id="termSource"
+                        aria-describedby="termSourceHelp"
+                    />
                 <div id="termSourceHelp"
                      className="form-text">Np. link lub tytuł tekstu.
                 </div>
             </div>
             <div className="mb-3">
                 <label htmlFor="termDefinition"
-                       className="form-label">Definicja</label>
+                       className="form-label fw-bold">Definicja</label>
                 <textarea
                     value={entry.termDefinition}
                     onChange={e => updateEntry(e)}
@@ -136,7 +136,7 @@ export const EditTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="termDefinitionSource"
-                       className="form-label">Źródło definicji</label>
+                       className="form-label fw-bold">Źródło definicji</label>
                 <input
                     type="text"
                     value={entry.termDefinitionSource}
@@ -152,7 +152,7 @@ export const EditTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="termCollocations"
-                       className="form-label">Kolokacje</label>
+                       className="form-label fw-bold">Kolokacje</label>
                 <textarea
                     value={entry.termCollocations}
                     onChange={e => updateEntry(e)}
@@ -167,7 +167,7 @@ export const EditTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalent"
-                       className="form-label">Ekwiwalent</label>
+                       className="form-label fw-bold">Ekwiwalent</label>
                 <input
                     type="text"
                     value={entry.equivalent}
@@ -185,7 +185,7 @@ export const EditTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalentSource"
-                       className="form-label">Źródło</label>
+                       className="form-label fw-bold">Źródło</label>
                 <input
                     type="text"
                     value={entry.equivalentSource}
@@ -201,7 +201,7 @@ export const EditTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalentDefinition"
-                       className="form-label">Definicja</label>
+                       className="form-label fw-bold">Definicja</label>
                 <textarea
                     value={entry.equivalentDefinition}
                     onChange={e => updateEntry(e)}
@@ -216,7 +216,7 @@ export const EditTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalentDefinitionSource"
-                       className="form-label">Źródło definicji</label>
+                       className="form-label fw-bold">Źródło definicji</label>
                 <input
                     type="text"
                     value={entry.equivalentDefinitionSource}
@@ -232,7 +232,7 @@ export const EditTerm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalentCollocations"
-                       className="form-label">Kolokacje</label>
+                       className="form-label fw-bold">Kolokacje</label>
                 <textarea
                     value={entry.equivalentCollocations}
                     onChange={e => updateEntry(e)}
@@ -262,6 +262,7 @@ export const EditTerm = () => {
                 </svg>
                 Anuluj i wróć do listy
             </Link>
-        </form>
+            </form>
+        </div>
     </div>
 }

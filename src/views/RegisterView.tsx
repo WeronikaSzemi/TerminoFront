@@ -1,10 +1,10 @@
 import React from "react";
-import {AddUser} from "../components/user/AddUser";
+import {Register} from "../components/user/Register";
 import {Menu} from "../components/homepage/Menu";
 
 export const RegisterView = () => {
     return <>
         <Menu/>
-        <AddUser/>
+        <Register/>
     </>
 }

@@ -54,7 +54,6 @@ export const Login = () => {
             });
             setLoggedIn(true);
         }
-        ;
     };
 
     return <div className="container p-3">
@@ -94,6 +93,5 @@ export const Login = () => {
             </form>
             <div className={message.style}>{message.content}</div>
         </div>
-
     </div>
 }
