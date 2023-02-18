@@ -42,15 +42,15 @@ export const Menu = () => {
                      id="navigation">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link"
+                            <a className="nav-link rounded"
                                href="/#about-termino">O Termino</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link"
+                            <a className="nav-link rounded"
                                href="/#contact">Kontakt</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link"
+                            <a className="nav-link rounded"
                                href={`/user/${userName}`}>Twoje konto</a>
                         </li>
                     </ul>

@@ -61,80 +61,82 @@
 .theme-btn-darkaccent {
     border-color: #AC415C;
     background-color: #AC415C;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .theme-btn-darkaccent:hover {
     border-color: #AC415C;
-    background-color: #F6F6F2;
+    background-color: #ffffff;
     color: #AC415C;
 }
 
 .theme-btn-mainbrand {
     border-color: #004AAD;
     background-color: #004AAD;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .theme-btn-mainbrand:hover {
     border-color: #004AAD;
-    background-color: #F6F6F2;
+    background-color: #ffffff;
     color: #004AAD;
 }
 
 .theme-btn-lightaccent {
     border-color: #6798BF;
     background-color: #6798BF;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .theme-btn-lightaccent:hover {
     border-color: #6798BF;
-    background-color: #F6F6F2;
+    background-color: #ffffff;
     color: #6798BF;
 }
 
 .theme-btn-darkaccent {
     border-color: #AC415C;
     background-color: #AC415C;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .theme-btn-darkaccent:hover {
     border-color: #AC415C;
-    background-color: #F6F6F2;
+    background-color: #ffffff;
     color: #AC415C;
 }
 
 .theme-btn-light-main {
-    border-color: #F6F6F2;
-    background-color: #F6F6F2;
+    border: 3px solid #004AAD;
+    background-color: #ffffff;
     color: #004AAD;
 }
 
 .theme-btn-light-main:hover {
-    border-color: #F6F6F2;
+    border-color: #004AAD;
     background-color: #004AAD;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .theme-btn-light-darkaccent {
-    border-color: #AC415C;
-    background-color: #F6F6F2;
+    border: 3px solid #AC415C;
+    background-color: #ffffff;
     color: #AC415C;
 }
 
 .theme-btn-light-darkaccent:hover {
     border-color: #AC415C;
     background-color: #AC415C;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .nav-link {
-    color: #F6F6F2;
     margin-right: 5px;
+    margin-left: 5px;
+    color: #ffffff;
 }
 
 .nav-link:hover {
     color: #004AAD;
+    background-color: #ffffff;
 }
