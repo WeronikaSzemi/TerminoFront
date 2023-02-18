@@ -34,8 +34,8 @@ export const App = () => {
                        element={<AccountView/>}/>
                 <Route path="/user/:userName/termbases"
                        element={<UserTermbasesView/>}/>
-                <Route path="/user"
-                       element={<LoginView/>}/>
+                {/*<Route path="/user/:userName/termbases/add"*/}
+                {/*       element={<AddTermbaseView/>}/>*/}
                 <Route path="/terms"
                        element={<TermsView/>}/>
                 <Route path="/terms/:termId"

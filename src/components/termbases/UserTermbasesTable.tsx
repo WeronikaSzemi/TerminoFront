@@ -12,8 +12,6 @@ export const UserTermbasesTable = (props: Props) => {
         <thead className="theme-bg-dark theme-text-light">
         <tr>
             <th>Nazwa słownika</th>
-            <th>Data utworzenia</th>
-            <th>Data ostatniej modyfikacji</th>
             <th></th>
         </tr>
         </thead>

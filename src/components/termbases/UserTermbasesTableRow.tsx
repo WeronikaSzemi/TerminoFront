@@ -26,8 +26,6 @@ export const UserTermbasesTableRow = (props: Props) => {
 
     return <tr>
         <td><strong>{props.termbase.termbaseName}</strong></td>
-        <td>jakaś data</td>
-        <td>inna data</td>
         <td>
             <Link to={`/user/:userName/termbases/${props.termbase.termbaseId}`}
                   className="btn btn-sm theme-btn-mainbrand mx-1 my-1 my-md-0">
