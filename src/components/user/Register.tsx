@@ -1,7 +1,7 @@
 import React, {FormEvent, useEffect, useState} from "react";
-import {newUser} from "types";
-import {Spinner} from "../Spinner/Spinner";
 import {useNavigate} from "react-router-dom";
+import {Spinner} from "../Spinner/Spinner";
+import {newUser} from "types";
 
 export const Register = () => {
     const [user, setUser] = useState<newUser>({
@@ -14,7 +14,6 @@ export const Register = () => {
         submitDisabled: true,
         backgroundColor: '',
     });
-    const [backgroundColor, setBackgroundColor] = useState<string>('');
     const [userRegistered, setUserRegistered] = useState(false);
 
     const navigate = useNavigate();
@@ -66,7 +65,7 @@ export const Register = () => {
                 },
                 body: JSON.stringify(user),
             });
-            const data = await res.json();
+            await res.json();
             setUserRegistered(true);
         } finally {
             setLoading(false);

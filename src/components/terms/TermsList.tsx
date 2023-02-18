@@ -14,7 +14,9 @@ export const TermsList = () => {
     };
 
     useEffect(() => {
-        refreshList();
+        (async () => {
+            await refreshList();
+        })();
     }, []);
 
     if (termList === null) {
@@ -22,8 +24,8 @@ export const TermsList = () => {
     }
 
     return <>
-        <div className="container mt-5">
-            <h2 className="mb-4">Terminy</h2>
+        <div className="container p-3">
+            <h2 className="my-5 theme-text-mainbrand">Terminy</h2>
             <TermsTable terms={termList}
                         onListChange={refreshList}/>
         </div>

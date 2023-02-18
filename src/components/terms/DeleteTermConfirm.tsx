@@ -8,7 +8,7 @@ interface Props {
     onListChange: () => void,
 }
 
-export const DeleteConfirm = (props: Props) => {
+export const DeleteTermConfirm = (props: Props) => {
     const [show, setShow] = useState(true);
 
     const deleteEntry = async (e: React.MouseEvent) => {
