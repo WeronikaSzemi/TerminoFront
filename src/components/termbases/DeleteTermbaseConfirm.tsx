@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Button} from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
 import {TermbaseEntity} from 'types';
+import {LoginContext} from "../../contexts/login.context";
 
 interface Props {
     termbase: TermbaseEntity,
@@ -10,11 +11,12 @@ interface Props {
 
 export const DeleteTermbaseConfirm = (props: Props) => {
     const [show, setShow] = useState(true);
+    const {userName} = useContext(LoginContext);
 
     const deleteEntry = async (e: React.MouseEvent) => {
         e.preventDefault();
 
-        await fetch(`http://localhost:3001/terms/${props.termbase.termbaseId}`, {
+        await fetch(`http://localhost:3001/${userName}/${props.termbase.termbaseName}`, {
             method: 'DELETE',
         });
         props.onListChange();

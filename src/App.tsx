@@ -24,6 +24,8 @@ export const App = () => {
             <Routes>
                 <Route path="/"
                        element={<HomeView/>}/>
+                <Route path="/user"
+                       element={<LoginView/>}/>
                 <Route path="/user/login"
                        element={<LoginView/>}/>
                 <Route path="/user/register"
