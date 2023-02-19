@@ -1,5 +1,5 @@
 import React, {FormEvent, useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Spinner} from "../Spinner/Spinner";
 import {newUser} from "types";
 
@@ -10,7 +10,11 @@ export const Register = () => {
         repeatPassword: '',
     });
     const [loading, setLoading] = useState<boolean>(false);
-    const [verificationResult, setVerificationResult] = useState({
+    const [userNameVerifRes, setUserNameVerifRes] = useState({
+        content: '',
+        backgroundColor: '',
+    });
+    const [pwdVerifRes, setPwdVerifRes] = useState({
         submitDisabled: true,
         backgroundColor: '',
     });
@@ -19,6 +23,7 @@ export const Register = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        verifyUserName();
         verifyPassword();
     }, [user]);
 
@@ -28,14 +33,31 @@ export const Register = () => {
         }
     }, [userRegistered]);
 
+    const verifyUserName = async () => {
+        const res = await fetch(`http://localhost:3001/user/login/${user.userName}`);
+        const result = await res.json();
+
+        if (result) {
+            setUserNameVerifRes({
+                content: `Nazwa jest już zajęta. Wybierz inną.`,
+                backgroundColor: 'lightcoral',
+            })
+        } else {
+            setUserNameVerifRes({
+                content: '',
+                backgroundColor: '',
+            });
+        }
+    }
+
     const verifyPassword = () => {
         if (user.password !== user.repeatPassword) {
-            setVerificationResult({
+            setPwdVerifRes({
                 submitDisabled: true,
                 backgroundColor: 'lightcoral',
             });
         } else {
-            setVerificationResult({
+            setPwdVerifRes({
                 submitDisabled: false,
                 backgroundColor: '',
             });
@@ -86,12 +108,15 @@ export const Register = () => {
                         maxLength={30}
                         className="form-control"
                         id="userName"
+                        style={{backgroundColor: userNameVerifRes.backgroundColor}}
                         aria-describedby="userNameHelp"
                         required
                     />
-                <div id="userNameHelp"
-                     className="form-text">Pole obowiązkowe. Nazwa użytkownika_czki może mieć od 5 do 30 znaków.
-                </div>
+                    <div id="userNameHelp"
+                         className="form-text">Pole obowiązkowe. Nazwa użytkownika_czki może mieć od 5 do 30 znaków.
+                    </div>
+                    <div className="form-text"
+                         style={{color: 'lightcoral'}}>{userNameVerifRes.content}</div>
             </div>
             <div className="mb-3">
                 <label htmlFor="password"
@@ -103,7 +128,7 @@ export const Register = () => {
                     maxLength={50}
                     className="form-control"
                     id="password"
-                    style={{backgroundColor: verificationResult.backgroundColor}}
+                    style={{backgroundColor: pwdVerifRes.backgroundColor}}
                     aria-describedby="passwordHelp"
                     required
                 />
@@ -121,7 +146,7 @@ export const Register = () => {
                     maxLength={50}
                     className="form-control"
                     id="repeatPassword"
-                    style={{backgroundColor: verificationResult.backgroundColor}}
+                    style={{backgroundColor: pwdVerifRes.backgroundColor}}
                     aria-describedby="repeatPasswordHelp"
                     required
                 />
@@ -131,9 +156,12 @@ export const Register = () => {
             </div>
                 <button type="submit"
                         className="btn theme-btn-mainbrand border-2 w-100"
-                        disabled={verificationResult.submitDisabled}
+                        disabled={pwdVerifRes.submitDisabled}
                 >Utwórz konto
                 </button>
+                <p className="mt-3 mb-2">Masz już konto? <Link to={'/user/login'}
+                                                               className="theme-text-mainbrand">Zaloguj się</Link>.
+                </p>
             </form>
         </div>
     </div>
