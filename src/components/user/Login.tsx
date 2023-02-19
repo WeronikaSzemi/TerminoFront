@@ -1,5 +1,5 @@
 import React, {FormEvent, useContext, useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {LoginContext} from "../../contexts/login.context";
 
 export const Login = () => {
@@ -91,6 +91,9 @@ export const Login = () => {
                         className="btn theme-btn-mainbrand border-2 w-100"
                 >Zaloguj
                 </button>
+                <p className="mt-3 mb-2">Nie masz konta? <Link to={'/user/register'}
+                                                               className="theme-text-mainbrand">Zarejestruj się</Link>.
+                </p>
             </form>
             <div className={message.style}>{message.content}</div>
         </div>

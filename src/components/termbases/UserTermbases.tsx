@@ -25,6 +25,7 @@ export const UserTermbases = () => {
         const res = await fetch(`http://localhost:3001/user/${userName}/termbases`);
         const data = await res.json();
         setTermbaseList(data.termbaseList);
+        setShowForm(false);
     };
 
     useEffect(() => {
