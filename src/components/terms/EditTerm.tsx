@@ -1,4 +1,4 @@
-import React, {ComponentState, FormEvent, useEffect, useState} from "react";
+import React, {ComponentState, FormEvent, useContext, useEffect, useState} from "react";
 import './AddTerm.css';
 import '../style.css';
 import {Link, useParams} from "react-router-dom";
@@ -6,6 +6,8 @@ import {Spinner} from "../Spinner/Spinner";
 import {TermEntity} from "types";
 import {Simulate} from "react-dom/test-utils";
 import {Menu} from "../homepage/Menu";
+import {LoginContext} from "../../contexts/login.context";
+import {TermbaseContext} from "../../contexts/termbase.context";
 import input = Simulate.input;
 
 export const EditTerm = () => {
@@ -13,12 +15,15 @@ export const EditTerm = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [resultInfo, setResultInfo] = useState<string | null>(null);
 
+    const {userName} = useContext(LoginContext);
+    const {termbaseName} = useContext(TermbaseContext);
+
     const {termId} = useParams();
 
     useEffect(() => {
 
         (async () => {
-            const res = await fetch(`http://localhost:3001/terms/${termId}`);
+            const res = await fetch(`http://localhost:3001/user/${userName}/termbases/${termbaseName}/${termId}`);
             const data = await res.json();
             setEntry(data.entry);
         })();
@@ -40,7 +45,7 @@ export const EditTerm = () => {
 
         setLoading(true);
 
-        const res = await fetch(`http://localhost:3001/terms/${termId}`, {
+        const res = await fetch(`http://localhost:3001/user/${userName}/termbases/${termbaseName}/${termId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

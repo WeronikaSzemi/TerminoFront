@@ -1,9 +1,11 @@
-import React, {FormEvent, useEffect, useState} from "react";
+import React, {FormEvent, useContext, useEffect, useState} from "react";
 import './AddTerm.css';
 import '../style.css';
 import {Spinner} from "../Spinner/Spinner";
 import {CreateEntryReq} from "types";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {LoginContext} from "../../contexts/login.context";
+import {TermbaseContext} from "../../contexts/termbase.context";
 
 export const AddTerm = () => {
     const [entry, setEntry] = useState<CreateEntryReq>({
@@ -20,14 +22,16 @@ export const AddTerm = () => {
     });
 
     const [savedEntry, setSavedEntry] = useState(false);
-
     const [loading, setLoading] = useState<boolean>(false);
+
+    const {userName} = useContext(LoginContext);
+    const {termbaseName} = useContext(TermbaseContext);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if (savedEntry) {
-            navigate('/');
+            navigate(`/user/${userName}/termbases/${termbaseName}`);
         }
     }, [savedEntry]);
 
@@ -35,9 +39,8 @@ export const AddTerm = () => {
         e.preventDefault();
 
         setLoading(true);
-
         try {
-            await fetch('http://localhost:3001/terms', {
+            await fetch(`http://localhost:3001/user/${userName}/termbases/${termbaseName}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -63,23 +66,32 @@ export const AddTerm = () => {
 
     return <div className="container p-3">
         <h2 className="my-5 theme-text-mainbrand">Dodawanie hasła</h2>
+        <Link
+            to={`/user/${userName}/termbases/${termbaseName}`}
+            className="btn theme-btn-light-darkaccent mb-5"
+            state={termbaseName}
+        >
+            Wróć do listy haseł
+        </Link>
         <form onSubmit={sendForm}
               className="col-12 col-md-10 col-lg-8">
             <div className="mb-3">
                 <label htmlFor="term"
-                       className="form-label fw-bold">Wyraz hasłowy</label>
+                       className="form-label fw-bold theme-text-mainbrand">Wyraz hasłowy</label>
                 <input
                     type="text"
                     value={entry.term}
                     onChange={e => updateForm('term', e.target.value)}
                     maxLength={50}
-                    className="form-control"
+                    minLength={3}
+                    className="form-control theme-border-mainbrand"
                     id="term"
                     aria-describedby="termHelp"
                     required
                 />
                 <div id="termHelp"
-                     className="form-text">Pole obowiązkowe. Wyraz hasłowy może mieć od 3 do 50 znaków. Może składać się
+                     className="form-text"><span className="theme-text-darkaccent">Pole obowiązkowe.</span> Wyraz
+                    hasłowy może mieć od 3 do 50 znaków. Może składać się
                     z kilku wyrazów.
                 </div>
             </div>
@@ -142,24 +154,26 @@ export const AddTerm = () => {
                     aria-describedby="termCollocationsHelp"
                 />
                 <div id="termCollocationsHelp"
-                     className="form-text">Możesz wypisać wyrażenia od nowego wiersza lub po przecinku.
+                     className="form-text">Wypisz wyrażenia po przecinku.
                 </div>
             </div>
             <div className="mb-3">
                 <label htmlFor="equivalent"
-                       className="form-label fw-bold">Ekwiwalent</label>
+                       className="form-label fw-bold theme-text-mainbrand">Ekwiwalent</label>
                 <input
                     type="text"
                     value={entry.equivalent}
                     onChange={e => updateForm('equivalent', e.target.value)}
                     maxLength={50}
-                    className="form-control"
+                    minLength={3}
+                    className="form-control theme-border-mainbrand"
                     id="equivalent"
                     aria-describedby="equivalentHelp"
                     required
                 />
                 <div id="equivalentHelp"
-                     className="form-text">Pole obowiązkowe. Ekwiwalent może mieć od 3 do 50 znaków. Może składać się z
+                     className="form-text"><span className="theme-text-darkaccent">Pole obowiązkowe.</span> Ekwiwalent
+                    może mieć od 3 do 50 znaków. Może składać się z
                     kilku wyrazów.
                 </div>
             </div>
@@ -222,7 +236,7 @@ export const AddTerm = () => {
                     aria-describedby="equivalentCollocationsHelp"
                 />
                 <div id="equivalentCollocationsHelp"
-                     className="form-text">Możesz wypisać wyrażenia od nowego wiersza lub po przecinku.
+                     className="form-text">Wypisz wyrażenia po przecinku.
                 </div>
             </div>
             <button type="submit"

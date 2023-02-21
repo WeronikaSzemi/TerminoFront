@@ -1,16 +1,21 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import {GetSingleEntryRes} from "types";
 import './TermsTable.css';
+import {LoginContext} from "../../contexts/login.context";
+import {TermbaseContext} from "../../contexts/termbase.context";
 
 
 export const SingleTerm = () => {
     const [entry, setEntry] = useState<GetSingleEntryRes | null>(null);
     const {termId} = useParams();
 
+    const {userName} = useContext(LoginContext);
+    const {termbaseName} = useContext(TermbaseContext);
+
     useEffect(() => {
         (async () => {
-            const res = await fetch(`http://localhost:3001/terms/${termId}`);
+            const res = await fetch(`http://localhost:3001/user/${userName}/termbases/${termbaseName}/${termId}`);
             setEntry(await res.json());
         })();
     }, []);
@@ -23,7 +28,7 @@ export const SingleTerm = () => {
         <div className="container mt-5">
             <h2 className="mb-4">{entry.entry.term}</h2>
             <div className="my-3">
-                <Link to={`/terms/${entry.entry.id}/edit`}
+                <Link to={`/user/${userName}/termbases/${termbaseName}/${entry.entry.id}/edit`}
                       className="btn btn-sm theme-btn-lightaccent mx-1 my-1 my-md-0"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +91,7 @@ export const SingleTerm = () => {
                 </tr>
                 <tr>
                     <th>Ekwiwalent</th>
-                    <td>{entry.entry.equivalent}</td>
+                    <td className="fw-bold">{entry.entry.equivalent}</td>
                 </tr>
                 <tr>
                     <th>Źródło</th>

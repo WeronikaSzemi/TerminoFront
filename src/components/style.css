@@ -140,3 +140,11 @@
     color: #004AAD;
     background-color: #ffffff;
 }
+
+label.required-field {
+    color: #004AAD;
+}
+
+input.required-field {
+    border-color: #004AAD;
+}
