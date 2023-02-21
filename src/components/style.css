@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .theme-text-light {
     color: #F6F6F2;
 }

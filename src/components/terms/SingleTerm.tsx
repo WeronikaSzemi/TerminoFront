@@ -42,7 +42,6 @@ export const SingleTerm = () => {
                 </button>
                 <Link to={`/user/${userName}/termbases/${termbaseName}`}
                       className="btn theme-btn-light-darkaccent mb-5 me-3"
-                    // onClick={}
                 >
                     Wróć do listy haseł
                 </Link>
