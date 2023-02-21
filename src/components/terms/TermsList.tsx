@@ -34,13 +34,13 @@ export const TermsList = () => {
             <h2 className="my-5 theme-text-mainbrand">{termbaseName}</h2>
             <Link
                 to={`/user/${userName}/termbases/${termbaseName}/addTerm`}
-                className="btn theme-btn-light-main mb-5"
+                className="btn theme-btn-light-main mb-5 me-3"
             >
                 Dodaj hasło
             </Link>
             <Link
                 to={`/user/${userName}/termbases`}
-                className="btn theme-btn-light-darkaccent mb-5 ms-3"
+                className="btn theme-btn-light-darkaccent mb-5 me-3"
                 state={termbaseName}
             >
                 Wróć do listy słowników

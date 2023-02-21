@@ -68,7 +68,7 @@ export const AddTerm = () => {
         <h2 className="my-5 theme-text-mainbrand">Dodawanie hasła</h2>
         <Link
             to={`/user/${userName}/termbases/${termbaseName}`}
-            className="btn theme-btn-light-darkaccent mb-5"
+            className="btn theme-btn-light-darkaccent mb-5 me-3"
             state={termbaseName}
         >
             Wróć do listy haseł

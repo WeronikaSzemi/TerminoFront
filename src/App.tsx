@@ -48,8 +48,6 @@ export const App = () => {
                            element={<AddTermView/>}/>
                     <Route path="/user/:userName/termbases/:termbaseName/:termId/edit"
                            element={<EditTermView/>}/>
-                    <Route path="/terms"
-                           element={<TermsView/>}/>
                     <Route path="/user/:userName/termbases/:termbaseName/:termId"
                            element={<SingleTermView/>}/>
                     <Route path="/termbases/sampletermbase"

@@ -130,6 +130,18 @@
     color: #ffffff;
 }
 
+.theme-btn-light-lightaccent {
+    border: 3px solid #6798BF;
+    background-color: #ffffff;
+    color: #6798BF;
+}
+
+.theme-btn-light-lightaccent:hover {
+    border-color: #6798BF;
+    background-color: #6798BF;
+    color: #ffffff;
+}
+
 .nav-link {
     margin-right: 5px;
     margin-left: 5px;
