@@ -14,11 +14,11 @@ export const TermbasesList = () => {
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (!loggedIn) {
-    //         navigate('/user/login');
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        }
+    }, []);
 
     const refreshList = async () => {
         setTermbaseList(null);

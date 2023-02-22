@@ -11,10 +11,16 @@ export const TermsList = () => {
     const [termList, setTermList] = useState<TermEntity[] | null>(null);
     const [showModal, setShowModal] = useState(false);
 
-    const {userName} = useContext(LoginContext);
+    const {userName, loggedIn} = useContext(LoginContext);
     const {termbaseName} = useContext(TermbaseContext);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        }
+    }, []);
 
     const refreshList = async () => {
         setTermList(null);

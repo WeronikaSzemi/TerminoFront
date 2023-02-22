@@ -21,6 +21,12 @@ export const AddTermbase = (props: Props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        }
+    }, []);
+
+    useEffect(() => {
         if (savedTermbase) {
             navigate(`/user/${userName}/termbases`);
         }

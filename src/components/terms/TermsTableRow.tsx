@@ -1,5 +1,5 @@
-import React, {useContext, useState} from "react";
-import {Link} from "react-router-dom";
+import React, {useContext, useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import {TermEntity} from 'types';
 import {LoginContext} from "../../contexts/login.context";
 import {TermbaseContext} from "../../contexts/termbase.context";
@@ -14,8 +14,16 @@ interface Props {
 export const TermsTableRow = (props: Props) => {
     const [showModal, setShowModal] = useState(false);
 
-    const {userName} = useContext(LoginContext);
+    const {userName, loggedIn} = useContext(LoginContext);
     const {termbaseName} = useContext(TermbaseContext);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        }
+    }, []);
 
     const deleteEntry = async () => {
         await fetch(`http://localhost:3001/user/${userName}/termbases/${termbaseName}/${props.term.id}`, {

@@ -24,10 +24,16 @@ export const AddTerm = () => {
     const [savedEntry, setSavedEntry] = useState(false);
     const [loading, setLoading] = useState<boolean>(false);
 
-    const {userName} = useContext(LoginContext);
+    const {userName, loggedIn} = useContext(LoginContext);
     const {termbaseName} = useContext(TermbaseContext);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        }
+    }, []);
 
     useEffect(() => {
         if (savedEntry) {

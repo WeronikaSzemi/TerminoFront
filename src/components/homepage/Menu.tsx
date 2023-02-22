@@ -43,11 +43,11 @@ export const Menu = () => {
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <a className="nav-link rounded"
-                               href="/#about-termino">O Termino</a>
+                               href="http://localhost:3000/#about-termino">O Termino</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link rounded"
-                               href="/#contact">Kontakt</a>
+                               href="http://localhost:3000/#contact">Kontakt</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link rounded"

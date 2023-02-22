@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import {TermbaseEntity} from 'types';
 import {TermbasesTableRow} from "./TermbasesTableRow";
+import {LoginContext} from "../../contexts/login.context";
+import {useNavigate} from "react-router-dom";
 
 interface Props {
     termbaseList: TermbaseEntity[],
@@ -8,6 +10,17 @@ interface Props {
 }
 
 export const TermbasesTable = (props: Props) => {
+
+    const {loggedIn} = useContext(LoginContext);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        }
+    }, []);
+
     return <table className="table table-striped TermsTable align-middle">
         <thead className="theme-bg-dark theme-text-light">
         <tr>

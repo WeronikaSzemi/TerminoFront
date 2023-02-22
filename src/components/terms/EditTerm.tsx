@@ -1,7 +1,7 @@
 import React, {ComponentState, FormEvent, useContext, useEffect, useState} from "react";
 import './AddTerm.css';
 import '../style.css';
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {Spinner} from "../Spinner/Spinner";
 import {TermEntity} from "types";
 import {Simulate} from "react-dom/test-utils";
@@ -13,10 +13,18 @@ export const EditTerm = () => {
     const [entry, setEntry] = useState<TermEntity | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
-    const {userName} = useContext(LoginContext);
+    const {userName, loggedIn} = useContext(LoginContext);
     const {termbaseName} = useContext(TermbaseContext);
 
     const {termId} = useParams();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        }
+    }, []);
 
     useEffect(() => {
 

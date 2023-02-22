@@ -1,5 +1,5 @@
-import React, {useContext, useState} from "react";
-import {Link} from "react-router-dom";
+import React, {useContext, useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import {TermbaseEntity} from 'types';
 import {LoginContext} from "../../contexts/login.context";
 import {TermbaseContext} from "../../contexts/termbase.context";
@@ -13,8 +13,16 @@ interface Props {
 export const TermbasesTableRow = (props: Props) => {
     const [showModal, setShowModal] = useState(false);
 
-    const {userName} = useContext(LoginContext);
+    const {userName, loggedIn} = useContext(LoginContext);
     const {setTermbaseName} = useContext(TermbaseContext);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        }
+    }, []);
 
     const handleTermbaseView = () => {
         setTermbaseName(props.termbase.termbaseName);

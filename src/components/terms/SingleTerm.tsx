@@ -14,10 +14,16 @@ export const SingleTerm = () => {
 
     const {termId} = useParams();
 
-    const {userName} = useContext(LoginContext);
+    const {userName, loggedIn} = useContext(LoginContext);
     const {termbaseName} = useContext(TermbaseContext);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        }
+    }, []);
 
     useEffect(() => {
         (async () => {
