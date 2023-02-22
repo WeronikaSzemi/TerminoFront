@@ -50,16 +50,18 @@ export const EditTerm = () => {
         e.preventDefault();
 
         setLoading(true);
-
-        const res = await fetch(`http://localhost:3001/user/${userName}/termbases/${termbaseName}/${termId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(entry),
-        });
-
-        setLoading(false);
+        try {
+            const res = await fetch(`http://localhost:3001/user/${userName}/termbases/${termbaseName}/${termId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(entry),
+            });
+        } finally {
+            setLoading(false);
+            navigate(`/user/${userName}/termbases/${termbaseName}/${termId}`);
+        }
     };
 
     if (loading) {

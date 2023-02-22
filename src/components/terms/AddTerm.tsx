@@ -21,7 +21,6 @@ export const AddTerm = () => {
         equivalentCollocations: '',
     });
 
-    const [savedEntry, setSavedEntry] = useState(false);
     const [loading, setLoading] = useState<boolean>(false);
 
     const {userName, loggedIn} = useContext(LoginContext);
@@ -35,12 +34,6 @@ export const AddTerm = () => {
         }
     }, []);
 
-    useEffect(() => {
-        if (savedEntry) {
-            navigate(`/user/${userName}/termbases/${termbaseName}`);
-        }
-    }, [savedEntry]);
-
     const sendForm = async (e: FormEvent) => {
         e.preventDefault();
 
@@ -53,7 +46,7 @@ export const AddTerm = () => {
                 },
                 body: JSON.stringify(entry),
             });
-            setSavedEntry(true);
+            navigate(`/user/${userName}/termbases/${termbaseName}`);
         } finally {
             setLoading(false);
         }

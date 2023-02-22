@@ -41,7 +41,7 @@ export const Register = () => {
             setUserNameVerifRes({
                 content: `Nazwa jest już zajęta. Wybierz inną.`,
                 backgroundColor: 'lightcoral',
-            })
+            });
         } else {
             setUserNameVerifRes({
                 content: '',
@@ -64,17 +64,6 @@ export const Register = () => {
         }
     }
 
-    const updateForm = (key: string, value: any) => {
-        setUser(user => ({
-            ...user,
-            [key]: value,
-        }));
-    };
-
-    if (loading) {
-        return <Spinner/>
-    }
-
     const sendForm = async (e: FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -94,6 +83,16 @@ export const Register = () => {
         }
     };
 
+    const updateForm = (key: string, value: any) => {
+        setUser(user => ({
+            ...user,
+            [key]: value,
+        }));
+    };
+
+    if (loading) {
+        return <Spinner/>
+    }
     return <div className="container p-3">
         <h2 className="my-5 theme-text-mainbrand">Rejestracja</h2>
         <div className="card w-50 p-3 theme-border-mainbrand">
