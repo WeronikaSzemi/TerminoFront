@@ -1,17 +1,23 @@
 import React, {useContext, useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {GetSingleEntryRes} from "types";
-import './TermsTable.css';
 import {LoginContext} from "../../contexts/login.context";
 import {TermbaseContext} from "../../contexts/termbase.context";
+import {ConfirmDeleteModal} from "../common/ConfirmDeleteModal";
+import './TermsTable.css';
+import '../style.css';
 
 
 export const SingleTerm = () => {
     const [entry, setEntry] = useState<GetSingleEntryRes | null>(null);
+    const [showModal, setShowModal] = useState(false);
+
     const {termId} = useParams();
 
     const {userName} = useContext(LoginContext);
     const {termbaseName} = useContext(TermbaseContext);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -19,6 +25,13 @@ export const SingleTerm = () => {
             setEntry(await res.json());
         })();
     }, []);
+
+    const deleteEntry = async () => {
+        await fetch(`http://localhost:3001/user/${userName}/termbases/${termbaseName}/${termId}`, {
+            method: 'DELETE',
+        });
+        navigate(`/user/${userName}/termbases/${termbaseName}`);
+    }
 
     if (entry === null) {
         return null;
@@ -28,23 +41,31 @@ export const SingleTerm = () => {
         <div className="container mt-5">
             <h2 className="my-5 theme-text-mainbrand">{entry.entry.term}</h2>
             <div className="my-3">
-                <Link to={`/user/${userName}/termbases/${termbaseName}/${entry.entry.id}/edit`}
-                      className="btn theme-btn-light-main mb-5 me-3"
-                >
-                    Edytuj
-                </Link>
-                <button
-                    className="btn theme-btn-darkaccent border-3 mb-5 me-3"
-
-                    // onClick={deleteConfirm}
-                >
-                    Usuń
-                </button>
-                <Link to={`/user/${userName}/termbases/${termbaseName}`}
-                      className="btn theme-btn-light-darkaccent mb-5 me-3"
-                >
-                    Wróć do listy haseł
-                </Link>
+                <div className="delete-wrap">
+                    <Link to={`/user/${userName}/termbases/${termbaseName}/${entry.entry.id}/edit`}
+                          className="btn theme-btn-light-main mb-5 me-3"
+                    >
+                        Edytuj
+                    </Link>
+                    <button
+                        className="btn theme-btn-darkaccent border-3 mb-5 me-3"
+                        onClick={() => setShowModal(true)}
+                    >
+                        Usuń
+                    </button>
+                    <ConfirmDeleteModal
+                        showModal={showModal}
+                        onClose={() => setShowModal(false)}
+                        onConfirm={deleteEntry}
+                    >
+                        <div>Czy na pewno chcesz usunąć hasło „{entry.entry.term}”?</div>
+                    </ConfirmDeleteModal>
+                    <Link to={`/user/${userName}/termbases/${termbaseName}`}
+                          className="btn theme-btn-light-darkaccent mb-5 me-3"
+                    >
+                        Wróć do listy haseł
+                    </Link>
+                </div>
             </div>
 
             <table className="table table-striped TermsTable align-middle">

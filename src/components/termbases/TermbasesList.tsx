@@ -14,14 +14,15 @@ export const TermbasesList = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!loggedIn) {
-            navigate('/user/login');
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (!loggedIn) {
+    //         navigate('/user/login');
+    //     }
+    // }, []);
 
     const refreshList = async () => {
         setTermbaseList(null);
+
         const res = await fetch(`http://localhost:3001/user/${userName}/termbases`);
         const data = await res.json();
         setTermbaseList(data.termbaseList);
