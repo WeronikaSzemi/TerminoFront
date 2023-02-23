@@ -1,46 +1,90 @@
-# Getting Started with Create React App
+# Termino – aplikacja do przechowywania słownictwa
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+— English below —
 
-## Available Scripts
+## Opis projektu
 
-In the project directory, you can run:
+<strong>Termino</strong> to aplikacja mojego pomysłu pozwalająca tworzyć słowniki i przechowywać w nich słownictwo. Jej część frontendowa została napisana w Typescripcie i z użyciem biblioteki React.js i frameworka Bootstrap. Frontend łączy się z RESTowym API połączonym z relacyjną bazą danych, którego repozytorium znajduje się <a href="https://github.com/WeronikaSzemi/TerminoBack">tutaj</a>.
 
-### `npm start`
+### Funkcjonalności:
+<ul>
+  <li>Na <strong>stronie głównej</strong> można przeczytać o aplikacji i skorzystać z formularza kontaktowego.</li>
+  <li>Nowe osoby mogą <strong>zarejestrować się</strong>, podając nazwę użytkownika_czki i hasło.</li>
+  <li>Następnie możliwe jest <strong>zalogowanie się</strong> dające dostęp do aplikacji.</li>
+  <li>Z <strong>panelu użytkownika_czki</strong> można przejść do widoku słowników, usunąć konto i wylogować się.</li>
+  <li>Po wejściu w <strong>widok słowników</strong> otrzymuje się listę swoich słowników oraz można utworzyć nowy. Każdy słownik można wczytać oraz usunąć.</li>
+  <li>Po wejściu w dany słownik otrzymujemy <strong>listę haseł</strong>, które można wczytywać, edytować i usuwać. Można też dodawać nowe.</li>
+  <li>Po wczytaniu <strong>pojedynczego hasła</strong> widzimy jego szczegóły, czyli wszystkie dostępne pola.</li>
+</ul>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Zastosowane języki i narzędzia:
+<ul>
+  <li>TypeScript</li>
+  <li>JavaScript</li>
+  <li>React.js</li>
+  <li>HTML5</li>
+  <li>CSS3</li>
+  <li>Bootstrap</li>
+</ul>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Kolejne kroki
 
-### `npm test`
+W planach są dalsza rozbudowa i dopracowywanie aplikacji. W szczególności zamierzam:
+<ul>
+  <li>dodać możliwość zmiany hasła</li>
+  <li>dodać podpowiadanie zapomnianego hasła</li>
+  <li>umożliwić sortowanie słowników oraz haseł po dacie utworzenia i dacie modyfikacji</li>
+  <li>podawać w tabeli słowników informację o liczbie haseł</li>
+  <li>umożliwić zmianę nazwy słownika</li>
+  <li>dodać wyświetlanie kolokacji w formie listy</li>
+  <li>dodać kolejne pola w słownikach, m.in. na synonimy</li>
+  <li>umożliwić samodzielny wybór pól przy tworzeniu słownika oraz jego późniejszą edycję</li>
+  <li>dodać funkcję eksportu słownika w formacie pozwalającym na import do narzędzi CAT</li>
+</ul>
+… i wiele innych!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+---------------------------------- ENGLISH ----------------------------------
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Termino – an app for storing vocabulary
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project description
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<strong>Termino</strong> is an application I conceived that enables its users to create glossaries and store vocabulary. Its front-end section has been written in Typescript and with the use of the React.js library and the Bootstrap framework. It connects to the RESTful API, which makes queries to an SQL database; the back-end repository is available <a href="https://github.com/WeronikaSzemi/TerminoBack">here</a>.
 
-### `npm run eject`
+### Functionalities:
+<ul>
+  <li>The <strong>homepage</strong> provides information about the app and a contact form.</li>
+  <li>New users can <strong>sign up</strong> by giving a user name and password.</li>
+  <li>Then, they can <strong>sign in</strong> to access the application.</li>
+  <li>From the <strong>dashboard</strong>, they can view their glossaries, delete their account and log out.</li>
+  <li>After entering the <strong>glossaries view</strong>, you see the list of your glossaries and can create a new one. Each glossary can be loaded or deleted.</li>
+  <li>When you open a specific glossary, you see the <strong>list of entries</strong>, which can be further viewed, edited, and deleted. You can also add new entries.</li>
+  <li>In <strong>single entry view</strong>, you see its individual fields.</li>
+</ul>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Languages and technologies used:
+<ul>
+  <li>TypeScript</li>
+  <li>JavaScript</li>
+  <li>React.js</li>
+  <li>HTML5</li>
+  <li>CSS3</li>
+  <li>Bootstrap</li>
+</ul>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Nest steps
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I am planning to further develop and improve the app. In particular, I intend to:
+<ul>
+  <li>add the option to change password</li>
+  <li>add help in case a user forgets their password</li>
+  <li>enable sorting glossaries and entries by date of creation and date of modification</li>
+  <li>provide the number of entries for each glossary in the glossary list view</li>
+  <li>enable the option to rename a glossary</li>
+  <li>render collocations in the form of a list</li>
+  <li>add next glossary fields, such as synonyms</li>
+  <li>enable the user to choose the fields their glossary should have and edit this setting later</li>
+  <li>add the option to export the glossary in a format that enables its import into CAT tools</li>
+</ul>
+… and much more!
