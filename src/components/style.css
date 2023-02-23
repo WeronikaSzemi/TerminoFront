@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .theme-text-light {
     color: #F6F6F2;
 }
@@ -61,79 +65,129 @@
 .theme-btn-darkaccent {
     border-color: #AC415C;
     background-color: #AC415C;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .theme-btn-darkaccent:hover {
     border-color: #AC415C;
-    background-color: #F6F6F2;
+    background-color: #ffffff;
     color: #AC415C;
 }
 
 .theme-btn-mainbrand {
     border-color: #004AAD;
     background-color: #004AAD;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .theme-btn-mainbrand:hover {
     border-color: #004AAD;
-    background-color: #F6F6F2;
+    background-color: #ffffff;
     color: #004AAD;
 }
 
 .theme-btn-lightaccent {
     border-color: #6798BF;
     background-color: #6798BF;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .theme-btn-lightaccent:hover {
     border-color: #6798BF;
-    background-color: #F6F6F2;
+    background-color: #ffffff;
     color: #6798BF;
 }
 
 .theme-btn-darkaccent {
     border-color: #AC415C;
     background-color: #AC415C;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .theme-btn-darkaccent:hover {
     border-color: #AC415C;
-    background-color: #F6F6F2;
+    background-color: #ffffff;
     color: #AC415C;
 }
 
 .theme-btn-light-main {
-    border-color: #F6F6F2;
-    background-color: #F6F6F2;
+    border: 3px solid #004AAD;
+    background-color: #ffffff;
     color: #004AAD;
 }
 
 .theme-btn-light-main:hover {
-    border-color: #F6F6F2;
+    border-color: #004AAD;
     background-color: #004AAD;
-    color: #F6F6F2;
+    color: #ffffff;
 }
 
 .theme-btn-light-darkaccent {
-    border-color: #AC415C;
-    background-color: #F6F6F2;
+    border: 3px solid #AC415C;
+    background-color: #ffffff;
     color: #AC415C;
 }
 
 .theme-btn-light-darkaccent:hover {
     border-color: #AC415C;
     background-color: #AC415C;
-    color: #F6F6F2;
+    color: #ffffff;
+}
+
+.theme-btn-light-lightaccent {
+    border: 3px solid #6798BF;
+    background-color: #ffffff;
+    color: #6798BF;
+}
+
+.theme-btn-light-lightaccent:hover {
+    border-color: #6798BF;
+    background-color: #6798BF;
+    color: #ffffff;
 }
 
 .nav-link {
-    color: #F6F6F2;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #ffffff;
 }
 
 .nav-link:hover {
     color: #004AAD;
+    background-color: #ffffff;
+}
+
+label.required-field {
+    color: #004AAD;
+}
+
+input.required-field {
+    border-color: #004AAD;
+}
+
+
+/* ConfirmDeleteModal-related styles */
+
+.delete-wrap {
+    position: relative;
+    z-index: 1;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 3;
+}
+
+.modal-div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    z-index: 1000;
 }

@@ -1,10 +1,9 @@
 import React from "react";
-import {Header} from "../components/Header";
-import {Menu} from "../components/Menu";
-import {LoginOrRegister} from "../components/LoginOrRegister";
-import {Welcome} from "../components/Welcome";
-import {AboutTermino} from "../components/AboutTermino";
-import {ContactForm} from "../components/ContactForm";
+import {Header} from "../components/homepage/Header";
+import {Menu} from "../components/homepage/Menu";
+import {Welcome} from "../components/homepage/Welcome";
+import {AboutTermino} from "../components/homepage/AboutTermino";
+import {ContactForm} from "../components/homepage/ContactForm";
 
 export const HomeView = () => {
     return <>
@@ -12,7 +11,7 @@ export const HomeView = () => {
         <Menu/>
         <Welcome/>
         <AboutTermino/>
-        <LoginOrRegister/>
+        {/*<LoginOrRegister/>*/}
         <ContactForm/>
     </>
 }

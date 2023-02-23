@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import './style.css';
+import '../style.css';
 
 export const Welcome = () => {
     return <div className="p-5 theme-bg-light">

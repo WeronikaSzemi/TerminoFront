@@ -1,0 +1,7 @@
+label > p, textarea {
+    margin: 10px 0 1px;
+}
+
+textarea {
+    margin-top: 0;
+}

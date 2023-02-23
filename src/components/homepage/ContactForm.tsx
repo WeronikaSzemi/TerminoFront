@@ -1,10 +1,10 @@
 import React from "react";
 
 export const ContactForm = () => {
-    return <div className="container">
+    return <div className="container p-5">
         <div id="contact">
-            <h2 className="display-6 theme-text-dark text-uppercase text-center mb-5">Kontakt</h2>
-            <form action="">
+            <h2 className="theme-text-dark text-center mb-4">Kontakt</h2>
+            <form action="termino/src/components">                {/* @TODO handle form */}
                 <div className="row align-items-center">
                     <div className="col-md-7 mb-3">
                         <label htmlFor="subject"

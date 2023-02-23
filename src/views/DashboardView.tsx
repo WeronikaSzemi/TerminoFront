@@ -1,10 +1,10 @@
 import React from "react";
-import {EditTerm} from "../components/terms/EditTerm";
 import {Menu} from "../components/homepage/Menu";
+import {Dashboard} from "../components/user/Dashboard";
 
-export const EditTermView = () => {
+export const DashboardView = () => {
     return <>
         <Menu/>
-        <EditTerm/>
+        <Dashboard/>
     </>
 }

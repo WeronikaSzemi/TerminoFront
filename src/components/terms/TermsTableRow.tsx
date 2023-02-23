@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import {TermEntity} from 'types';
-import {Link} from "react-router-dom";
+import {LoginContext} from "../../contexts/login.context";
+import {TermbaseContext} from "../../contexts/termbase.context";
+import {ConfirmDeleteModal} from "../common/ConfirmDeleteModal";
 import './TermsTable.css';
-import {DeleteConfirm} from "./DeleteConfirm";
 
 interface Props {
     term: TermEntity,
@@ -10,25 +12,32 @@ interface Props {
 }
 
 export const TermsTableRow = (props: Props) => {
-    const [showDialog, setShowDialog] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-    const deleteConfirm = (e: React.MouseEvent) => {
-        e.preventDefault();
+    const {userName, loggedIn} = useContext(LoginContext);
+    const {termbaseName} = useContext(TermbaseContext);
 
-        setShowDialog(true);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/user/login');
+        }
+    }, []);
+
+    const deleteEntry = async () => {
+        await fetch(`http://localhost:3001/user/${userName}/termbases/${termbaseName}/${props.term.id}`, {
+            method: 'DELETE',
+        });
+        props.onListChange();
     }
 
-    if (showDialog) {
-        return <DeleteConfirm term={props.term}
-                              onListChange={props.onListChange}/>
-    }
-
-    return <>
-        <tr>
-            <td>{props.term.term}</td>
-            <td>{props.term.equivalent}</td>
-            <td>
-                <Link to={`/terms/${props.term.id}`}
+    return <tr>
+        <td>{props.term.term}</td>
+        <td>{props.term.equivalent}</td>
+        <td>
+            <div className="delete-wrap">
+                <Link to={`/user/${userName}/termbases/${termbaseName}/${props.term.id}`}
                       className="btn btn-sm theme-btn-mainbrand mx-1 my-1 my-md-0">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="16"
@@ -40,7 +49,7 @@ export const TermsTableRow = (props: Props) => {
                         <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                     </svg>
                 </Link>
-                <Link to={`/terms/${props.term.id}/edit`}
+                <Link to={`/user/${userName}/termbases/${termbaseName}/${props.term.id}/edit`}
                       className="btn btn-sm theme-btn-lightaccent mx-1 my-1 my-md-0"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +63,7 @@ export const TermsTableRow = (props: Props) => {
                 </Link>
                 <button
                     className="btn btn-sm theme-btn-darkaccent mx-1 my-1 my-md-0"
-                    onClick={deleteConfirm}
+                    onClick={() => setShowModal(true)}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="16"
@@ -65,7 +74,14 @@ export const TermsTableRow = (props: Props) => {
                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                     </svg>
                 </button>
+                <ConfirmDeleteModal
+                    showModal={showModal}
+                    onClose={() => setShowModal(false)}
+                    onConfirm={deleteEntry}
+                >
+                    <div>Czy na pewno chcesz usunąć hasło „{props.term.term}”?</div>
+                </ConfirmDeleteModal>
+            </div>
             </td>
         </tr>
-    </>
 };

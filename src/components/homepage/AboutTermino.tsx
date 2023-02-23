@@ -61,7 +61,7 @@ export const AboutTermino = () => {
                 </div>
                 <div className="container text-center">
                     <Link to="/termbases/sampletermbase"
-                          className="btn theme-btn-darkaccent border-2 mt-4">Zobacz, jak to działa</Link>
+                          className="btn btn-lg theme-btn-darkaccent border-2 mt-5 px-5">Zobacz, jak to działa</Link>
                 </div>
             </div>
         </div>
